@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .signin-section{
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            color: black;
+            background-color: white;
+            display:block;
+            z-index: 999;
+            overflow-y: scroll; 
+            overflow-x: hidden;
+            transition: 0.5s;
+
+        }
+
+        label{
+            font-weight: 700;
+        }
+        #name ,#email,#password ,#uname{
+            height: 30px;
+            width: 180px;
+            border-radius: 7px;
+        }
+          
+        .d1,.d2{
+            display: flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: space-evenly;
+            color:black;
+            width: 370px;
+            font-size: larger;
+        }
+        button{
+            background-color: rgb(93, 219, 93);
+            color: black;
+            width:90px;
+            height: 40px;
+            border-radius: 7px;
+            
+        }
+        button:hover{
+            background: rgb(66, 247, 66);
+            color: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px #eee;
+            text-shadow: none;
+        }
+
+        .signin-section .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        @media screen and (max-height: 450px) {
+            .signup-section { padding-top: 15px; }
+        }
+
+    </style>
+    </head>
+    <body>
+        <section>
+            <div class="signin-section" id="signin-section" style="display: block;">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeSignin()">&times;</a>  
+                <center>
+                    <h1 style="color:rgb(42, 38, 38);">Login</h1>
+
+                </center>
+                    <form action="/signinsubmit"  method="POST" id="signin-form">
+                        <div class="d1">
+                            <label for="email">Email: </label>
+                            <input type="email" name="email" placeholder="enter your email" id="email" required/>
+                        </div><br>
+                        <div class="d2">
+                            <label for="password">password: </label>
+                            <input type="password" name="password" placeholder="enter your password" id="password" required/><br><br>
+                        </div><br>
+                        <center>
+                            
+                            <div class="submit" id="signin-submit">
+                                <button >Submit</button>
+                            </div>
+    
+                        </form>
+                        
+                
+                    </center>          
+                
+            </div>
+        </section>
+        <script>
+            function closeSignin() {
+                document.getElementById("signin-section").style.width = "0";
+            }
+
+            
+
+            
+// document.addEventListener("DOMContentLoaded", function () {
+//     const signupForm = document.getElementById("signin-form");
+//     const signupSubmitButton = document.getElementById("signin-submit");
+//     signupForm.addEventListener("submit", function (e) {
+//         e.preventDefault(); 
+//         const dashboardURL = "/dashboard"; 
+//         window.open(dashboardURL, "_self");
+        
+    
+//     });
+// });
+
+        </script>
+    </body>
+</html>
+
+

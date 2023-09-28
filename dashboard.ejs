@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Food</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                background-color: white;
+            }
+            #section-1{
+                height:150px;
+            }
+            nav{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 500px;
+                width: 100%;
+                height: 100px;
+                background-color: black;
+                padding: 10px;
+                position: relative;
+            }
+            nav ul{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap:0 35px;
+                font-size: 1.2rem;
+                margin-left: 20px;
+            }
+            nav a{
+                color: white;
+                text-decoration: none;
+                font-weight: 700;
+            }
+            nav a:hover{
+                border-bottom: 2px solid hsl(0,0%,100%);
+                transition: 1s;
+            }
+            .logo {
+                border-radius: 50%; 
+                width: 120px;
+                height: auto; 
+                position: absolute;
+                top: 0px; 
+                left: 10px; 
+            }
+            #section-2{
+                height:150px;
+            }
+            .scroll-container {
+                white-space: nowrap; 
+                overflow-x: scroll; 
+                border: 1px solid #ccc;
+                padding: 10px;
+                width: 80%;
+            }
+            .scroll-item {
+                display: inline-block; 
+                margin-right: 10px; 
+                width: 100px; 
+                height: 100px;
+                border: 1px solid #ccc;
+                border-radius: 50%; 
+                overflow: hidden; 
+            }
+            .scroll-item img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .scroll-item-label {
+                font-size: 14px;
+                margin-top: 5px;
+            }
+            .sidenav {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                transition: 0.5s;
+                padding-top: 60px;
+            }
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+            #section-3{
+                height:1000px;
+            } 
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            } 
+            .container {
+                background-color: #ffffff;
+                font-size: 16px;
+                padding: 3em 2.8em;
+                width: 80vw;
+                margin: 0 auto;
+                text-align: center;
+                border-radius: 0.9em;
+                box-shadow: 0 1.2em 2.5em rgba(42, 32, 0, 0.2);
+            }
+            .search-container {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 9fr 3fr;
+                gap: 1.2em;
+            }
+            .search-container input {
+                font-size: 1em;
+                padding: 0.6em;
+                border: none;
+                outline: none;
+                border-bottom: 2px solid #202030;
+            }
+            .search-container button {
+                font-size: 1em;
+                background-color: #f4c531;
+                border: none;
+                font-weight: 600;
+                border-radius: 0.3em;
+                color: #ffffff;
+            }
+            .search-container button:hover {
+                font-size: 1em;
+                background-color: white;
+                border: 2px solid;
+                border-color: #333;
+                font-weight: 600;
+                border-radius: 0.3em;
+                color: #333;
+            }
+            #content {
+                display: block;
+                width: 30%;
+                margin: 1.8em auto 0 auto;
+            }
+            .details {
+                background-color: rgb(0,0,0);
+                color: #ffffff;
+                margin-top: 1.8em;
+                text-align: center;
+                padding: 0 .6em 0;
+            }
+            .details h2 {
+                font-size: 1.2em;
+                font-weight: 600;
+            }
+            .details h4 {
+                font-size: 1em;
+                font-weight: 400;
+            }
+            #show-recipe {
+                font-size: 1em;
+                position: relative;
+                left: 45%;
+                padding: 0.9em 0.6em;
+                background-color: #f4c531;
+                border: none;
+                top: 1.5em;
+                border-radius: 0.3em;
+                font-weight: 600;
+                color: #ffffff;
+            }
+            #show-recipe:hover {
+                font-size: 1em;
+                background-color: white;
+                border: 2px solid;
+                border-color: #333;
+                font-weight: 600;
+                border-radius: 0.3em;
+                color: #333;
+            }
+            #recipe {
+                background-color: #ffffff;
+                border-radius: 0.6em;
+                display: none;
+                position: fixed; 
+                top: 50%;
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                z-index: 2;
+                max-width: 90%; 
+                padding: 20px; 
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+            }
+            #instructions {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                font-size: 16px; 
+                color: #333; 
+                text-align: left; 
+            }
+            #hide-recipe {
+                position: absolute; 
+                top: 10px; 
+                right: 10px; 
+                background-color: #f4c531;
+                border: none;
+                border-radius: 50%; 
+                width: 30px; 
+                height: 30px; 
+                color: #fff;
+                text-align: center;
+                line-height: 30px; 
+                cursor: pointer;
+                font-weight: bold;
+            }
+            #hide-recipe:hover {
+                background-color: #333;
+            }
+            #recipe pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                padding: 2.5em 1.2em 1.2em 1.2em;
+                font-size: 0.92em;
+                color: #303040;
+            }
+            #hide-recipe {
+                font-size: 1em;
+                position: relative;
+                width: 1.8em;
+                height: 1.8em;
+                background-color: #f4c531;
+                border: none;
+                top: 1.0em;
+                left: 50%;
+                border-radius: 0.3em;
+                color: #ffffff;
+            }
+            #hide-recipe:hover {
+                font-size: 1em;
+                background-color: white;
+                border: 2px solid;
+                border-color: #333;
+                font-weight: 600;
+                border-radius: 0.3em;
+                color: #333;
+            }
+            ul {
+                font-size: 1em;
+                position: relative;
+                display: grid;
+                grid-template-columns: auto auto;
+                gap: 0.8em 1.1em;
+                padding: 1.2em 0 0 1.2em;
+                color: #303040;
+                text-transform: capitalize;
+            }
+            h3 {
+                text-align: center;
+                margin-top: 1.8em;
+                color: #202030;
+            }
+            @media screen and (max-width: 500px) {
+                .container {
+                    font-size: 14px;
+                }
+            }
+        </style>
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    <span>Favourites</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span>support</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    <span>Setting</span>
+                </a>
+            </li>
+            <li>
+                <a href="home">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+          </div>
+        <section id="section-1">
+            <nav>
+                <span style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKdD0Q0ftNOIF69928SibexXx_TAvsjRAXbjcWEAGDuVp-JTU2_E0SiPPCmJQEh_j36Ao&usqp=CAU" class="logo">
+                </span>
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="home">Logout</a></li>
+                    
+                </ul>
+            </nav>
+        </section>
+
+        <section id="section-2">
+            <center>
+                <h2>Popular Cuisines</h2>
+                <div class="scroll-container">
+                    <div class="scroll-item">
+                        <img src="https://healux.in/wp-content/uploads/2020/11/ChickenBiryani.jpg" alt="Content 1">
+                        <div class="scroll-item-label">Biriyani</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://www.tiffinboxfood.com/wp-content/uploads/2020/10/vegetable-roll.jpg" alt="Content 2">
+                        <div class="scroll-item-label">Rolls</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900" alt="Content 2">
+                        <div class="scroll-item-label">Pizza</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://insanelygoodrecipes.com/wp-content/uploads/2020/02/Burger-and-Fries.jpg" alt="Content 2">
+                        <div class="scroll-item-label">Burger</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://t4.ftcdn.net/jpg/02/54/92/05/360_F_254920579_xOIyVqIWxgUi0fSQ8FwBC95YlIVZpuCd.jpg" alt="Content 2">
+                        <div class="scroll-item-label">Sweets</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTELLr6SYe9zIxtnS3lRTqwdjYcLGzrUxqwAw&usqp=CAU" alt="Content 2">
+                        <div class="scroll-item-label">Milk Shakes</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://pic.warmoven.in/catalog/product/cache/4e14bcb566d25893ae7201d4dbdc22fd/image/234187ae/strawberry-cake.jpg" alt="Content 2">
+                        <div class="scroll-item-label">Cake</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN6QCo8uVNBEeK9GV1XLcpvpgUAhlkCMOJwQ&usqp=CAU" alt="Content 2">
+                        <div class="scroll-item-label">Ice Creams</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/styles/1200x706/public/content6079.jpg?itok=wM692drs" alt="Content 2">
+                        <div class="scroll-item-label">North India</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://gumlet.assettype.com/homegrown/import/book/kuhwlbayxs-1533040300.jpg?w=1200&h=675&auto=format%2Ccompress&fit=max&enlarge=true" alt="Content 2">
+                        <div class="scroll-item-label">Soutn India</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="https://recipes.timesofindia.com/thumb/83740315.cms?width=1200&height=900" alt="Content 2">
+                        <div class="scroll-item-label">Sandwich</div>
+                    </div>
+                    <div class="scroll-item">
+                        <img src="data:image/jpeg;base64,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" alt="Content 2">
+                        <div class="scroll-item-label">Desserts</div>
+                    </div>
+                
+            </center>
+           
+        </section>
+
+
+        <section id="section-3">
+            <center>
+                <div class="container">
+                    <div class="search-container">
+                        <input type="text" placeholder="Type a Dish Name Here..." id="user-inp">
+                        <button id="search-btn">Search</button>
+                    </div>
+                    <div id="result"></div>
+                </div>
+
+            </center>    
+        </section>
+
+
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+
+
+            function searchFood() {
+             var userInput = document.getElementById("foodInput").value;
+            alert("Searching for: " + userInput);
+            }
+
+    
+            let result = document.getElementById("result");
+            let searchBtn = document.getElementById("search-btn");
+            let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+
+            searchBtn.addEventListener("click", () => {
+                let userInp = document.getElementById("user-inp").value;
+                if (userInp.length == 0) {
+                    result.innerHTML = `<h3>Input Field Cannot Be Empty</h3>`;
+                } else {
+                fetch(url + userInp)
+                .then((response) => response.json())
+                .then((data) => {
+                let myMeal = data.meals[0];
+                console.log(myMeal);
+                console.log(myMeal.strMealThumb);
+                console.log(myMeal.strMeal);
+                console.log(myMeal.strArea);
+                console.log(myMeal.strInstructions);
+                let count = 1;
+                let ingredients = [];
+                for (let i in myMeal) {
+                    let ingredient = "";
+                    let measure = "";
+                    if (i.startsWith("strIngredient") && myMeal[i]) {
+                        ingredient = myMeal[i];
+                        measure = myMeal[`strMeasure` + count];
+                        count += 1;
+                        ingredients.push(`${measure} ${ingredient}`);
+                    }
+                }
+                console.log(ingredients);
+
+            result.innerHTML = `
+            <img id="content" src=${myMeal.strMealThumb}>
+            <div class="details">
+                <h2>${myMeal.strMeal}</h2>
+                <h4>${myMeal.strArea}</h4>
+            </div>
+            <div id="ingredient-con"></div>
+            <div id="recipe">
+                <button id="hide-recipe">X</button>
+                <pre id="instructions">${myMeal.strInstructions}</pre>
+            </div>
+            <button id="show-recipe">View Recipe</button>
+    `
+            let ingredientCon = document.getElementById("ingredient-con");
+            let parent = document.createElement("ul");
+            let recipe = document.getElementById("recipe");
+            let hideRecipe = document.getElementById("hide-recipe");
+            let showRecipe = document.getElementById("show-recipe");
+
+            ingredients.forEach((i) => {
+            let child = document.createElement("li");
+            child.innerText = i;
+            parent.appendChild(child);
+            ingredientCon.appendChild(parent);
+        });
+
+        hideRecipe.addEventListener("click", () => {
+          recipe.style.display = "none";
+        });
+        showRecipe.addEventListener("click", () => {
+          recipe.style.display = "block";
+        });
+      })
+      .catch(() => {
+        result.innerHTML = `<h3>Invalid Input</h3>`;
+      });
+  }
+});
+
+        </script>
+
+    </body>
+</html> 

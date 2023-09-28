@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order food</title>
+        <style>
+            html,body{
+                margin:0;
+                padding:0;
+                box-sizing:border-box;
+                background-color: white;
+            }
+            .section-1{
+                height:500px;
+            }
+            .f-l{
+                float:left;
+                height:100%;
+            }
+            .f-r{
+                float:right;
+                height:100%;
+            }
+            .w-60{
+                width:60%;
+            }
+            .w-40{
+                width:40%;
+            }
+            .w-75{
+                width:75%;
+            }
+            .navbar{
+                display:flex;
+                justify-content: space-between;
+                align-items: center;
+                width:100%;
+                margin-top:50px;
+                height:100px;
+            }
+            .nav-btns{
+                width:60%;
+                display:flex;
+                justify-content: center;
+            }
+            .signin{
+                border:0;
+                background-color: white;
+                padding:10px 30px;
+                color:black;
+                font-weight: bold;
+                font-size:18px;
+            }
+            .signup{
+                background-color: black;
+                color:white;
+                border:none;
+                font-weight: bold;
+                font-size:18px;
+                padding:10px 30px;
+
+            }
+            .head{
+                color:black;
+                margin-top:45px;
+                margin-bottom:0;
+                font-size:40px;
+                font-weight:bold;
+                letter-spacing: 2px;
+            }
+            .sub-head{
+                color:grey;
+                letter-spacing: 2px;
+                font-size:24px;
+
+            }
+            .flex-row{
+                display:flex;
+                flex-direction:row;
+                
+            }
+            .search-box{
+                width:70%;
+                height:60px;
+                border:1px solid #ccc;
+                overflow: hidden;
+            }
+            .search-btn{
+                width:20%;
+                border:none;
+                background-color: #fc9109;
+                color:white;
+                font-weight:bold;
+                letter-spacing: 2px;
+                font-size:18px;
+
+            }
+            .search-input{
+                height:60px;
+                width:70%;
+                border:none;
+                padding-left: 20px;
+                outline:none;
+                font-size: 18px;
+                color:black;
+                font-weight: bold;
+             }
+            /* .locate-me{
+                width:20%;
+                height:100%;
+                margin-left: 10px;
+                border:none;
+                color:gray;
+                font-size: 18px;
+                background-color: white;
+                border-radius: 10px;
+                transition: all 0.5s;
+            } */
+            .locate-me:hover{
+                background-color: #f1f1f1;
+                cursor: pointer;
+            }
+            .chocolates{
+                padding-right:20px;
+                color:gray;
+                font-size: 18px;
+            }
+            .chocolates:nth-of-type(odd){
+                font-weight: bold;
+            }
+            #section-2{
+            height:350px;
+            }
+            #section-3{
+                height:400px;
+            }
+            /* .c-names{
+                color:gray;
+                font-size: 18px;
+                display:flex;
+                flex-direction: row;
+                justify-content:row;
+
+            } */
+            footer{
+                position: fixed;
+                width: 100%;
+                height:8%;
+                background-color: black;
+                padding: 10px;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                padding:1px;
+                margin-bottom: 0px;
+                bottom:0;
+
+            }     
+        </style>
+    </head>
+    <body>
+       
+    <section>
+        <div class="section-1">
+            <div class="f-l w-60">
+                <div class="f-r w-75">
+                    <div class="navbar">
+                        <img src="https://t3.ftcdn.net/jpg/04/41/73/28/240_F_441732816_Eo3fHdX3oImKtXdkYkktCrR1mbwAT9I6.jpg" alt="logo" width="240px" height="100%">
+                        <div class="nav-btns">
+                            <button class="signin" onclick="signinform()">Login</button>
+
+                            <iframe id="signinFrame" src="signin" style="display: none; width: 100%; height: 100%; position: fixed; top: 0; right: 0; border: none;"></iframe>
+
+
+                            <button class="signup" onclick="signupform()">Sign up</button>
+                            
+                            <iframe id="signupFrame" src="signup" style="display: none; width: 100%; height: 100%; position: fixed; top: 0; right: 0; border: none;"></iframe>
+
+                        </div>
+                    </div>
+                    <p class="head">CookingBook</p>
+                    <p class="sub-head">Offering a range of delectable continental dishes</p>
+                    <div class="flex-row">
+                        <div class="search-box">
+                            <input type="text" id="foodInput" placeholder="Enter your favourite dish to cook" class="search-input"/>
+                            
+                        </div>
+                        <button class="search-btn" onclick="searchInput()">SEARCH</button>
+                    </div>
+                    <p class="sub-head" style="font-size: 16px;margin-top:20px;">We have a diverse menu featuring like...</p>
+                    <div class="flex-row">
+                        <p class="chocolates">Indian</p>
+                        <p class="chocolates">British</p>
+                        <p class="chocolates">French</p>
+                        <p class="chocolates">Canadian</p>
+                        <p class="chocolates">Japanese</p>
+                        <p class="chocolates">American</p>
+                    </div>
+                </div>
+            </div>
+            <div class="f-r w-40">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource122/v4/fa/31/71/fa317153-1434-5b24-fc79-d4fec1f6a5a6/c446f2c1-4b2d-461e-b856-7f70cfe37615_iPad_02.png/643x0w.jpg" width="100%" height="100%"/>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-2">
+        <div style="float: left; width:50%; height:100%;display: flex;align-items: center; justify-content: center;">
+            <div style="float: right;height:50%; width:50%">
+                <p class="head">Discover Recipes</p>
+                <p class="sub-head">Good food is good mood some of the good foods recommended for you</p>
+                <div class="flex-row">
+                    <img src="https://cdn.jwplayer.com/v2/media/8gtvgR9E/poster.jpg?width=720" width="70%"height="200px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <img src="https://www.novanova.in/cdn/shop/products/AssortedTarts2_800x.jpg?v=1668760285" width="70%" height="200px" style="margin-left: 20px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/03/matar-paneer.jpg" width="70%"height="200px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqNTZzK27x6Ow2EDIvPfNmHNSL82xtA2_wiA&usqp=CAU" width="70%" height="200px" style="margin-left: 20px;"/>
+                    
+                </div>
+               
+            </div>
+        </div>
+    
+    </section>
+    <section id="section-3">
+        <footer>
+            <img src="https://t3.ftcdn.net/jpg/04/41/73/28/240_F_441732816_Eo3fHdX3oImKtXdkYkktCrR1mbwAT9I6.jpg" width="50px" height="50px" style="padding-left: 15px;"/>
+            <p style="color:white; font-size: 21px; justify-content: center;">&copy; 2023 CookingBook</p>
+            <div style="width:300px; display: flex; justify-content: space-between; align-items: center;">
+                <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_48,h_48/icon-facebook_tfqsuc" width="14" height="14" style="padding-right: 10px;"/>
+                <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_48,h_48/icon-pinterest_kmz2wd" width="14" height="14" style="padding-right: 12px;"/>
+                <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_48,h_48/icon-instagram_b7nubh" width="14" height="14"style="padding-right: 14px;"/>
+                <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_48,h_48/icon-twitter_gtq8dv" width="14" height="14" style="padding-right: 16px;"/>
+    
+    
+            </div>
+        </footer>
+    
+    </section>
+    
+    <script>
+        function signupform() {
+        var signupFrame = document.getElementById("signupFrame");
+        signupFrame.style.display = "block";
+        }
+
+        function signinform() {
+        var signinFrame = document.getElementById("signinFrame");
+        signinFrame.style.display = "block";
+        }
+
+        function searchInput(){
+            var userInput = document.getElementById("foodInput").value;
+            alert("Please signup to Search " + userInput);
+        }
+
+    </script>
+    </body>
+</html>
+
+
+
+
+    
+
+
+    

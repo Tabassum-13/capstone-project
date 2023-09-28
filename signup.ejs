@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .signup-section{
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            color: black;
+            background-color: white;
+            display:block;
+            z-index: 999;
+            overflow-y: scroll; 
+            overflow-x: hidden;
+            transition: 0.5s;
+
+        }
+
+        label{
+            font-weight: 700;
+        }
+        #name ,#email,#password ,#uname{
+            height: 30px;
+            width: 180px;
+            border-radius: 7px;
+        }
+        .checkbox{
+            font-weight: 700;
+            
+        }
+        .d1,.d2,.d3,.d4{
+            display: flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: space-evenly;
+            color:black;
+            width: 370px;
+            font-size: larger;
+        }
+        button{
+            background-color: rgb(93, 219, 93);
+            color: black;
+            width:90px;
+            height: 40px;
+            border-radius: 7px;
+            
+        }
+        button:hover{
+            background: rgb(66, 247, 66);
+            color: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px #eee;
+            text-shadow: none;
+        }
+        .signup-section .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        @media screen and (max-height: 450px) {
+            .signup-section { padding-top: 15px; }
+        }
+
+    </style>
+    </head>
+    <body>
+        <section>
+            <div class="signup-section" id="signup-section" style="display: block;">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeSignup()">&times;</a>  
+                <center>
+                    <h1 style="color:rgb(42, 38, 38);">Sign Up</h1>
+
+                </center>
+                    <form action="/signupsubmit"  method="POST" id="signup-form">
+                        <div class="d1">
+                            <label>Full Name: </label>
+                            <input type="text" name="full_name" placeholder="Enter your Name" id="name" required />
+                        </div><br>
+                        <div class="d2">
+                            <label for="user_name">User Name: </label>
+                            <input type="text" name="user_name" placeholder="Enter user name" id="uname" required/>
+                        </div><br>
+                        <div class="d3">
+                            <label for="email">Email: </label>
+                            <input type="email" name="email" placeholder="enter your email" id="email" required/>
+                        </div><br>
+                        <div class="d4">
+                            <label for="password">password: </label>
+                            <input type="password" name="password" placeholder="enter your password" id="password" required/><br><br>
+                        </div><br>
+                        <center>
+                            <div class="checkbox">
+                                <input type="checkbox" required id="check"><span style="color:rgb(92, 90, 90)">I agree to the</span> <span style="color: black;"><b>Terms of User</b></span> 
+                            </div><br>
+                            <div class="submit" id="signup-submit">
+                                <button >Submit</button>
+                            </div>
+    
+                        </form>
+                        <p>Already have an account? <a href="signin" style="color: rgb(15, 112, 112);">Log in</a></p>
+                
+                    </center>          
+                
+            </div>
+        </section>
+        <script>
+            function closeSignup() {
+                document.getElementById("signup-section").style.width = "0";
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
